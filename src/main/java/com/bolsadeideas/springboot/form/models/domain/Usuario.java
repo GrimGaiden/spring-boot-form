@@ -1,12 +1,16 @@
 package com.bolsadeideas.springboot.form.models.domain;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 //import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.bolsadeideas.springboot.form.validation.IdentificatorRegex;
+import com.bolsadeideas.springboot.form.validation.Requerido;
 
 public class Usuario {
 
@@ -17,7 +21,8 @@ public class Usuario {
     //@NotEmpty(message = "El nombre no puede estar vacío")
     private String nombre;
 
-    @NotEmpty
+    //@NotEmpty
+    @Requerido
     private String apellido;
 
     @NotBlank
@@ -27,9 +32,15 @@ public class Usuario {
     @NotEmpty
     private String password;
 
-    @NotEmpty
+    //@NotEmpty
+    @Requerido
     @Email(message = "Correo con formato incorrecto")
     private String email;
+
+    @NotNull
+    @Min(5)
+    @Max(5000)
+    private Integer cuenta;
 
     public String getUsername() {
         return username;
@@ -77,6 +88,14 @@ public class Usuario {
 
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
+    }
+
+    public Integer getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Integer cuenta) {
+        this.cuenta = cuenta;
     }
 
 }
