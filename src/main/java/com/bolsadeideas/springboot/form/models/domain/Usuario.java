@@ -2,6 +2,7 @@ package com.bolsadeideas.springboot.form.models.domain;
 
 import java.util.Date;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -51,6 +52,9 @@ public class Usuario {
     //@DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past
     private Date fechaNacimiento;
+
+    @Valid
+    private Pais pais;
 
     public String getUsername() {
         return username;
@@ -114,6 +118,14 @@ public class Usuario {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Pais getPais() {
+        return pais;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
 
 }

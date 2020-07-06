@@ -1,7 +1,11 @@
 package com.bolsadeideas.springboot.form.controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /* import java.util.HashMap;
 import java.util.Map; */
@@ -9,6 +13,7 @@ import java.util.Map; */
 import javax.validation.Valid;
 
 import com.bolsadeideas.springboot.form.editors.NombreMayusculaEditors;
+import com.bolsadeideas.springboot.form.models.domain.Pais;
 import com.bolsadeideas.springboot.form.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.validation.UsuarioValidador;
 
@@ -20,6 +25,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -41,6 +47,31 @@ public class FormController {
 
         binder.registerCustomEditor(String.class, "nombre", new NombreMayusculaEditors());
         binder.registerCustomEditor(String.class, "apellido", new NombreMayusculaEditors());
+    }
+
+    @ModelAttribute("listaPaises")
+    public List<Pais> listaPaises() {
+        return Arrays.asList(
+            new Pais(1, "ES","España"),
+            new Pais(2, "MX","México"),
+            new Pais(3, "CL","Chile"),
+            new Pais(4, "AR","Argentina"),
+            new Pais(5, "PE","Perú"),
+            new Pais(6, "CO","Colombia"),
+            new Pais(7, "VE","Venezuela"));
+    }
+
+    @ModelAttribute("paisesMap")
+    public Map<String, String> paisesMap() {
+        Map<String, String> paises = new HashMap<String, String>();
+        paises.put("ES", "España");
+        paises.put("MX", "México");
+        paises.put("CL", "Chile");
+        paises.put("AR", "Argentina");
+        paises.put("PE", "Perú");
+        paises.put("CO", "Colombia");
+        paises.put("VE", "Venezuela");
+        return paises;
     }
 
     @GetMapping("/form")
