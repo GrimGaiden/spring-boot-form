@@ -8,6 +8,7 @@ import java.util.Map; */
 
 import javax.validation.Valid;
 
+import com.bolsadeideas.springboot.form.editors.NombreMayusculaEditors;
 import com.bolsadeideas.springboot.form.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.validation.UsuarioValidador;
 
@@ -37,6 +38,9 @@ public class FormController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, "fechaNacimiento", new CustomDateEditor(dateFormat, true));
+
+        binder.registerCustomEditor(String.class, "nombre", new NombreMayusculaEditors());
+        binder.registerCustomEditor(String.class, "apellido", new NombreMayusculaEditors());
     }
 
     @GetMapping("/form")
@@ -45,7 +49,7 @@ public class FormController {
         Usuario usuario = new Usuario();
         usuario.setNombre("John");
         usuario.setApellido("Doe");
-        usuario.setIdentificador("123.456.789-K");
+        usuario.setIdentificador("12.456.789-K");
         model.addAttribute("titulo", "Formulario usuarios");
         model.addAttribute("usuario", usuario);
         return "form";
