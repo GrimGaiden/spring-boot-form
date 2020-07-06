@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 import com.bolsadeideas.springboot.form.validation.IdentificatorRegex;
 import com.bolsadeideas.springboot.form.validation.Requerido;
 
-import org.springframework.format.annotation.DateTimeFormat;
+//import org.springframework.format.annotation.DateTimeFormat;
 
 public class Usuario {
 
@@ -48,7 +48,7 @@ public class Usuario {
     private Integer cuenta;
 
     @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     @Future
     private Date fechaNacimiento;
 
