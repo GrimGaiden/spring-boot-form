@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import com.bolsadeideas.springboot.form.editors.NombreMayusculaEditors;
 import com.bolsadeideas.springboot.form.models.domain.Pais;
 import com.bolsadeideas.springboot.form.models.domain.Usuario;
+import com.bolsadeideas.springboot.form.services.PaisService;
 import com.bolsadeideas.springboot.form.validation.UsuarioValidador;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,9 @@ public class FormController {
     @Autowired
     private UsuarioValidador validador;
 
+    @Autowired
+    private PaisService paisService;
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(validador);
@@ -51,14 +55,7 @@ public class FormController {
 
     @ModelAttribute("listaPaises")
     public List<Pais> listaPaises() {
-        return Arrays.asList(
-            new Pais(1, "ES","España"),
-            new Pais(2, "MX","México"),
-            new Pais(3, "CL","Chile"),
-            new Pais(4, "AR","Argentina"),
-            new Pais(5, "PE","Perú"),
-            new Pais(6, "CO","Colombia"),
-            new Pais(7, "VE","Venezuela"));
+        return paisService.listar();
     }
 
     @ModelAttribute("paisesMap")
