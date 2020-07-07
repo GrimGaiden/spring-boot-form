@@ -1,7 +1,8 @@
 package com.bolsadeideas.springboot.form.controllers;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
+import java.util.ArrayList;
+//import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,8 +16,10 @@ import javax.validation.Valid;
 import com.bolsadeideas.springboot.form.editors.NombreMayusculaEditors;
 import com.bolsadeideas.springboot.form.editors.PaisPropertyEditor;
 import com.bolsadeideas.springboot.form.models.domain.Pais;
+import com.bolsadeideas.springboot.form.models.domain.Role;
 import com.bolsadeideas.springboot.form.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.services.PaisService;
+import com.bolsadeideas.springboot.form.services.RoleService;
 import com.bolsadeideas.springboot.form.validation.UsuarioValidador;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +46,9 @@ public class FormController {
     private PaisService paisService;
 
     @Autowired
+    private RoleService roleService;
+
+    @Autowired
     private PaisPropertyEditor paisEditor;
 
     @InitBinder
@@ -56,12 +62,34 @@ public class FormController {
         binder.registerCustomEditor(String.class, "nombre", new NombreMayusculaEditors());
         binder.registerCustomEditor(String.class, "apellido", new NombreMayusculaEditors());
         binder.registerCustomEditor(Pais.class, "pais", paisEditor);
+    }
 
+    @ModelAttribute("listaRoles")
+    public List<Role> listaRoles() {
+        return roleService.listar();
     }
 
     @ModelAttribute("listaPaises")
     public List<Pais> listaPaises() {
         return paisService.listar();
+    }
+
+    @ModelAttribute("listaRolesString")
+    public List<String> listaRolesString() {
+        List<String> roles = new ArrayList<>();
+        roles.add("ROLE_ADMIN");
+        roles.add("ROLE_USER");
+        roles.add("ROLE_MODERATOR");
+        return roles;
+    }
+
+    @ModelAttribute("listaRolesMap")
+    public Map<String, String> listaRolesMap() {
+        Map<String, String> roles = new HashMap<String, String>();
+        roles.put("ROLES_ADMIN", "Administrador");
+        roles.put("ROLE_USER", "Usuario");
+        roles.put("ROLE_MODERATOR", "Moderador");
+        return roles;
     }
 
     @ModelAttribute("paisesMap")

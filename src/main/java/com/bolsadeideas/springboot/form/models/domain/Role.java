@@ -1,22 +1,18 @@
 package com.bolsadeideas.springboot.form.models.domain;
 
-//import javax.validation.constraints.NotEmpty;
-
-public class Pais {
+public class Role {
     
     private Integer id;
-    //@NotEmpty
-    private String codigo;
     private String nombre;
+    private String role;
 
-    
-    public Pais() {
+    public Role() {
     }
-    
-    public Pais(Integer id, String codigo, String nombre) {
+
+    public Role(Integer id, String nombre, String role) {
         this.id = id;
-        this.codigo = codigo;
         this.nombre = nombre;
+        this.role = role;
     }
 
     public Integer getId() {
@@ -27,14 +23,6 @@ public class Pais {
         this.id = id;
     }
 
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -42,5 +30,12 @@ public class Pais {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }
