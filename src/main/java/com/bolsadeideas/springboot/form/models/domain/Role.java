@@ -1,7 +1,7 @@
 package com.bolsadeideas.springboot.form.models.domain;
 
 public class Role {
-    
+
     private Integer id;
     private String nombre;
     private String role;
@@ -37,5 +37,19 @@ public class Role {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) {
+            return true;
+        }
+
+        if(!(obj instanceof Role)) {
+            return false;
+        }
+        
+        Role role = (Role) obj;
+        return this.id != null && this.id.equals(role.getId());
     }
 }

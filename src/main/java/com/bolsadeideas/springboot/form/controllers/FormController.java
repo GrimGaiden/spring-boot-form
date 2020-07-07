@@ -2,6 +2,7 @@ package com.bolsadeideas.springboot.form.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 //import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -69,6 +70,10 @@ public class FormController {
         binder.registerCustomEditor(Role.class, "roles", rolesEditor);
     }
 
+    @ModelAttribute("genero")
+    public List<String> genero() {
+        return Arrays.asList("Hombre", "Mujer");
+    }
     @ModelAttribute("listaRoles")
     public List<Role> listaRoles() {
         return roleService.listar();
@@ -118,6 +123,9 @@ public class FormController {
         usuario.setApellido("Doe");
         usuario.setIdentificador("12.456.789-K");
         usuario.setHabilitar(true);
+        usuario.setValorSecreto("Algún valor secreto *****");
+        usuario.setPais(new Pais(3, "CL","Chile"));
+        usuario.setRoles(Arrays.asList(new Role(2, "Usuario", "ROLE_USER")));
         model.addAttribute("titulo", "Formulario usuarios");
         model.addAttribute("usuario", usuario);
         return "form";
