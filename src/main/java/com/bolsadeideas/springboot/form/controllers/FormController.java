@@ -15,6 +15,7 @@ import javax.validation.Valid;
 
 import com.bolsadeideas.springboot.form.editors.NombreMayusculaEditors;
 import com.bolsadeideas.springboot.form.editors.PaisPropertyEditor;
+import com.bolsadeideas.springboot.form.editors.RolesEditor;
 import com.bolsadeideas.springboot.form.models.domain.Pais;
 import com.bolsadeideas.springboot.form.models.domain.Role;
 import com.bolsadeideas.springboot.form.models.domain.Usuario;
@@ -51,6 +52,9 @@ public class FormController {
     @Autowired
     private PaisPropertyEditor paisEditor;
 
+    @Autowired
+    private RolesEditor rolesEditor;
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(validador);
@@ -62,6 +66,7 @@ public class FormController {
         binder.registerCustomEditor(String.class, "nombre", new NombreMayusculaEditors());
         binder.registerCustomEditor(String.class, "apellido", new NombreMayusculaEditors());
         binder.registerCustomEditor(Pais.class, "pais", paisEditor);
+        binder.registerCustomEditor(Role.class, "roles", rolesEditor);
     }
 
     @ModelAttribute("listaRoles")
