@@ -1,7 +1,5 @@
 package com.bolsadeideas.springboot.form;
 
-import com.bolsadeideas.springboot.form.interceptors.TiempoTranscurridoInterceptor;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +17,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         
-        registry.addInterceptor(tiempoTranscurridoInterceptor);
+        registry.addInterceptor(tiempoTranscurridoInterceptor).addPathPatterns("/form/**");
     }
     
 }

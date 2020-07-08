@@ -33,6 +33,10 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
+        if(request.getMethod().equalsIgnoreCase("post")) {
+            return true;
+        }
+
         if(handler instanceof HandlerMethod) {
             HandlerMethod metodo = (HandlerMethod) handler;
             logger.info("Es un metodo del controlador: " + metodo.getMethod().getName());
